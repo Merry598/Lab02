@@ -11,9 +11,28 @@
     height: 100px;
     width: 100px;
     position: absolute;
-    }
-</style>
+}
+    /*Style DrapDrop*/
+    #div1{
+        width: 350px;
+       height: 100px;
+       padding: 10px;
+       border: 1px solid #000000;    
     
+    }
+    /******Style Dragable*****/
+    .cube{
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        padding: 20px;
+        margin:20px;
+    }
+  
+
+</style>
+  
+
 </head>
 <body>
 
@@ -23,7 +42,7 @@
 
     </div>
     </div>
-
+    
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -31,6 +50,60 @@
     </script>
 
     <script src="/formas.js"></script>
-    
+   
+
+<!--Drag Drop Es cuando se "toma" un objeto y arrastra a una ubicación diferente.-->
+    <h1>Drag Drop</h1>
+    <div id="div1" ondragover="allowDrop(event)" ondrop="drop(event)"></div><br>
+       
+    <img id="imagen" src="youtube.png" draggable="true" ondragstart="drag(event)">  
+   
+<script>
+
+    function allowDrop(ev){
+      ev.preventDefault();
+    }
+
+    function drag(ev){
+      ev.dataTransfer.setData("Text",ev.target.id);
+    }
+
+    function drop(ev){
+     ev.preventDefault();
+     var datos=ev.dataTransfer.getData("Text");
+     ev.target.appendChild(document.getElementById(datos));
+
+    }
+ </script> 
+ <br><br><br>
+ <!---------- Draggable------------------->
+ <h2>Draggable</h2>
+ <div style=" border: 1px solid black;">
+ <div class="cube">
+     <h3>
+         CUBE 1
+     </h3>
+ </div>
+ <div class="cube">
+    <h3>
+        CUBE 2
+    </h3>
+ </div>
+</div>
+
+<script>
+    $(".cube").draggable({
+       //axis : "x",
+    //containment : "parent",
+    cursor : "grabbing",
+    opacity : 0.5,
+    //grid: [300, 300],
+    snap : true,
+    snapTolerance: 20
+
+    });
+
+</script>
+
 </body>
 </html>
